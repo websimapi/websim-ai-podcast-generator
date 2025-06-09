@@ -191,6 +191,18 @@ const PodcastPlayer = ({ podcastId, onBack }) => {
     
     if (!podcast) return <div className="flex justify-center items-center h-screen"><Spinner /></div>;
 
+    if (!podcast.script || !podcast.script.segments || !Array.isArray(podcast.script.segments)) {
+        return (
+            <div className="p-4 md:p-8 max-w-5xl mx-auto">
+                <button onClick={onBack} className="mb-4 bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg">&larr; Back to Podcasts</button>
+                <div className="bg-gray-800 rounded-lg shadow-xl overflow-hidden p-6 text-center">
+                    <h2 className="text-2xl font-bold text-red-500">Error Loading Podcast</h2>
+                    <p className="text-gray-300 mt-2">The podcast data appears to be missing or corrupted. It might have failed during generation.</p>
+                </div>
+            </div>
+        );
+    }
+
     const currentImageIndex = Math.floor(currentSegment / 2);
     const currentImage = images[currentImageIndex];
     const speakingSegment = podcast.script.segments[currentSegment];
@@ -662,4 +674,3 @@ function App() {
 
 const root = createRoot(document.getElementById('root'));
 root.render(<App />);
-
