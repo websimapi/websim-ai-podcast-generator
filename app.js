@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
-import { WebsimSocket, useQuery } from '@websim/use-query';
+import { useQuery } from '@websim/use-query';
+import { WebsimSocket } from '@websim/websim-socket';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // --- DATABASE AND WEBSIM SETUP ---
